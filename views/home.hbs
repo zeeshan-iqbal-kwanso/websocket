@@ -1,12 +1,23 @@
 <html>
 <head>
     <title>Simple WebSocket Server</title>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
 <h1>Hello World</h1>
 <p>Project is working!</p>
 <script>
-    /*const socketS = new WebSocket('wss://tame-rose-jay-shoe.cyclic.app/media');
+    const socket = io();
+
+    // Handle 'message' event from the server
+    socket.on('message', (data) => {
+        console.log('Received message:', data);
+    });
+
+    // Send a message to the server
+    socket.emit('message', 'Hello, Server!');
+
+    /*const socketS = new WebSocket('wss://ill-pear-walrus-vest.cyclic.app/media');
     socketS.onopen = () => {
         console.log('Connected to WebSocket server');
     };
