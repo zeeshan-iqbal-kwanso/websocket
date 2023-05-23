@@ -3,7 +3,8 @@ const expressWebSocket = require("express-ws");
 const websocket = require("websocket-stream");
 const websocketStream = require("websocket-stream/stream");
 const PORT = process.env.PORT || 3300;
-const hbs = require("express-handlebars");
+const hbs = require("hbs");
+
 
 const app = express();
 
@@ -11,7 +12,7 @@ expressWebSocket(app, null, {
     perMessageDeflate: false
 });
 
-app.engine("hbs", hbs());
+//app.engine("hbs", hbs());
 app.set("view engine", "hbs");
 
 // make all the files in 'public' available
@@ -30,4 +31,8 @@ app.ws("/media", (ws, req) => {
     ws.on('close', () => {
         console.log('Client disconnected');
     });
+});
+
+const listener = app.listen(PORT, () => {
+    console.log("Your app is listening on port " + listener.address().port);
 });
