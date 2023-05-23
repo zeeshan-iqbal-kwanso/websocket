@@ -5,9 +5,6 @@ const express = require("express");
 const PORT = process.env.PORT || 3300;
 const hbs = require("hbs");
 const socketIO = require('socket.io');
-const io = socketIO(server);
-
-
 const app = express();
 
 // expressWebSocket(app, null, {
@@ -35,9 +32,11 @@ app.get("/", (request, response) => {
     });
 });*/
 
-const listener = app.listen(PORT, () => {
-    console.log("Your app is listening on port " + listener.address().port);
+const server = app.listen(PORT, () => {
+    console.log("Your app is listening on port " + server.address().port);
 });
+
+const io = socketIO(server);
 
 // Handle socket connections
 io.on('connection', (socket) => {
